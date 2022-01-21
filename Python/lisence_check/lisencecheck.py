@@ -31,26 +31,28 @@ out3 = np.array(cmd_out2).T
 df=pd.DataFrame(out3)
 df=df[0].str.split('|', expand=True)
 df1=df[0].str.split(',', expand=True)
-df1[['a','b','c','day','time','f','linum','h']]=df1[1].str.split('\s', expand=True)
+df1[['a','b','c','day','Start_time','f','License','h']]=df1[1].str.split('\s', expand=True)
 #df=pd.concat([df1,df2], axis=1)
 df=df1.drop(df1.tail(2).index) #从尾部去掉 n 行
 
 ######################################
 for idx in reversed(df.index):
-    if df.loc[idx,'linum'] == None :
+    if df.loc[idx,'License'] == None :
         break
 df5=df.drop(df.head(idx).index)
 ################################
 
 df5=df5.drop([1,'a','b','c'], axis=1)
-df5['linum'] = df5['linum'].astype(float)
-###########################################
+df5['License'] = df5['License'].fillna(0).astype(int) #remove none and to int
 
-df6=df5.groupby([0,'time'], sort=False)['linum'].sum().reset_index()
-lisum=df6['linum'].sum()
+###########################################
+df6=df5.groupby([0,'Start_time'], sort=False)['License'].sum().reset_index()
+lisum=df6['License'].sum()
 remin='remaing:'+str(570-lisum)
-alllisen='Update time is :'+str(nowis)+';      All lisence is:'+str(lisum)+'/570'
-df6.loc[0]=[alllisen,remin,lisum]
+alllisen='************Update time is :'+str(nowis)+'************'
+lisen=str(lisum)+'/570'
+df6.loc[0]=[alllisen,remin,lisen]
+df6=df6.rename(columns={0:'PC_name'}) #rename
 print(df6)
 #########################
 #グラフ化
