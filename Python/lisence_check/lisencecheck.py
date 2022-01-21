@@ -9,6 +9,9 @@ import re
 from pandas.plotting import  table
 import matplotlib.pyplot as plt
 import dataframe_image as dfi
+import time
+
+nowis=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())) #nowtime
 
 obj = subprocess.Popen(["cmd"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, encoding="utf-8")
 obj.stdin.write("abaqus licensing dslsstat -usage")
@@ -32,16 +35,22 @@ df1[['a','b','c','day','time','f','linum','h']]=df1[1].str.split('\s', expand=Tr
 #df=pd.concat([df1,df2], axis=1)
 df=df1.drop(df1.tail(2).index) #从尾部去掉 n 行
 
+######################################
 for idx in reversed(df.index):
     if df.loc[idx,'linum'] == None :
         break
 df5=df.drop(df.head(idx).index)
+################################
+
 df5=df5.drop([1,'a','b','c'], axis=1)
 df5['linum'] = df5['linum'].astype(float)
+###########################################
+
 df6=df5.groupby([0,'time'], sort=False)['linum'].sum().reset_index()
 lisum=df6['linum'].sum()
 remin='remaing:'+str(570-lisum)
-df6.loc[0]=['All lisence is 570',remin,lisum]
+alllisen='Update time is :'+str(nowis)+';      All lisence is:'+str(lisum)+'/570'
+df6.loc[0]=[alllisen,remin,lisum]
 print(df6)
 #########################
 #グラフ化
