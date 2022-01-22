@@ -35,7 +35,7 @@ while True:
     df1=df[0].str.split(',', expand=True)
     df1[['a','b','c','day','Start_time','f','License','h']]=df1[1].str.split('\s', expand=True)
     #df=pd.concat([df1,df2], axis=1)
-    df=df1.drop(df1.tail(2).index) #从尾部去掉 n 行
+    df=df1.drop(df1.tail(2).index) #从末尾からn行を消す
 
     ######################################
     for idx in reversed(df.index):
@@ -63,7 +63,7 @@ while True:
     # ax = fig.add_subplot(111, frame_on=False) 
     # ax.xaxis.set_visible(False)  # hide the x axis
     # ax.yaxis.set_visible(False)  # hide the y axis
-    # table(ax, df6, loc='center')  # 将df换成需要保存的dataframe即可
+    # table(ax, df6, loc='center')  #
     #plt.savefig('license.png')
     df_styled = df6.style.background_gradient()
     dfi.export(df_styled,"V:\wiki\public\images\lisence.png")
