@@ -38,10 +38,10 @@ while True:
     df=df1.drop(df1.tail(2).index) #从末尾からn行を消す
 
     ######################################
-    for idx in reversed(df.index):
+    for idx in reversed(df.index):      #末尾から数える，noneがあれば止まる
         if df.loc[idx,'License'] == None :
             break
-    df5=df.drop(df.head(idx).index)
+    df5=df.drop(df.head(idx).index)　#最後ライセンスの何行を残す
     ################################
 
     df5=df5.drop([1,'a','b','c'], axis=1)
