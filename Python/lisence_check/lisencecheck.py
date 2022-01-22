@@ -48,9 +48,9 @@ while True:
     df5['License'] = df5['License'].fillna(0).astype(int) #remove none and to int
 
     ###########################################
-    df6=df5.groupby([0,'Start_time'], sort=False)['License'].sum().reset_index()
-    lisum=df6['License'].sum()
-    remin='remaing:'+str(570-lisum)
+    df6=df5.groupby([0,'Start_time'], sort=False)['License'].sum().reset_index()    #時間同じ行のlICENSEを足し合わせる
+    lisum=df6['License'].sum()          #現在実行中の総使用量
+    remin='remaing:'+str(570-lisum)        #残量
     alllisen='************Update time is :'+str(nowis)+'************'
     lisen=str(lisum)+'/570'
     df6.loc[0]=[alllisen,remin,lisen]
