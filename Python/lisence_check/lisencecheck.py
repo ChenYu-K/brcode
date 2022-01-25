@@ -53,7 +53,7 @@ while True:
     remin='remaing:'+str(570-lisum)        #残量
     alllisen='************Update time is :'+str(nowis)+'************'
     lisen=str(lisum)+'/570'
-    df6.loc[0]=[alllisen,remin,lisen]
+    df6.loc[df6.index.max() + 1]=[alllisen,remin,lisen]
     df6=df6.rename(columns={0:'PC_name'}) #rename
     print(df6)
     #########################
