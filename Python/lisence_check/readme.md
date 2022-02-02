@@ -3,7 +3,7 @@
 - Pandas
 - numpy
 - matplotlib
-- dataframe_image : https://github.com/dexplo/dataframe_image `conda install -c conda-forge dataframe_image`
+- dataframe_image : https://github.com/dexplo/dataframe_image `pip install dataframe_image`
 
 ## 流れ
 
