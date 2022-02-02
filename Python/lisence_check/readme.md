@@ -13,7 +13,7 @@
 4. lisenceのところを残す
 5. 同じ時間のパソコンのLisenceを足し合わせる．
 6. グラフ化,Brwikiのフォルダに保存する ([BRWIKI](http://nas_sy21:5014))
-7. Brwikiに随時更新する．（40s間程度）[^1]
+7. [BRWIKI](http://nas_sy21:5014)に随時更新する．（40s間程度）[^1]
 
 ## lisence_check link
 
